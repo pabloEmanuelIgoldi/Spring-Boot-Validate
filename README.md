@@ -4,7 +4,7 @@
 ### Definición del proyecto
 ### Tecnología aplicada
 ### Ventajas de la validación
-### Tipos de parametros
+### Tipos de parámetros
 ### Anotaciones de validación
 ### Documentación oficial
 ### Pruebas
@@ -12,62 +12,62 @@
 
 
 #  **Definición del proyecto**
-La aplicacion es una demostracion de como validar los parametros enviados en las peticiones del cliente.
+La aplicación es una demostración de como validar los parámetros enviados en las peticiones del cliente.
 
-Ademas, habra una logica especifica para el manejo de errores de los valores no validos.
+Además, habrá una lógica específica para el manejo de errores de los valores no válidos.
 
-Si bien las validaciones se puede realizar en distintas capas, en esta Api nos enfocaremos la validación en la capa Controller.
+Si bien las validaciones se pueden realizar en distintas capas, en esta Api nos enfocaremos en la validación en la capa Controller.
 
 
 #  **Tecnología aplicada**
 
-La aplicaciòn está desarrollada en Spring Boot 3.3.11 y Java 17.
+La aplicación está desarrollada en Spring Boot 3.3.11 y Java 17.
 
 Dependencias del proyecto: 
 - spring-boot-starter-web: construye aplicaciones web.
 - lombok: reduce el código repetitivo.
 - spring-boot-starter-validation: facilita la validación de datos.
-- springdoc-openapi-starter-webmvc-ui: permite documentacion y prueba (swagger).
+- springdoc-openapi-starter-webmvc-ui: permite documentación y prueba (swagger).
 
 #  **Ventajas de la validación**
-Alguna de las ventajas de validar parametros y las gestion de los valores no validos:
+Alguna de las ventajas de validar parámetros y las gestión de los valores no válidos:
 - Prevención de datos inválidos: evita corrupción de datos. Bloquea información malformada evitando problemas en capas profundas del sistema.
 - Seguridad Mejorada: mitiga ataques comunes. Validando inputs previene inyecciones SQL, XSS, o manipulación de parámetros.
-- Separa responsabilidades: La validación se centraliza, evitando lógica repetitiva en servicios.
-- Mensajes personalizados: Explica al usuario qué corrigir (ej: "El email debe ser válido").
+- Separa responsabilidades: la validación se centraliza, evitando lógica repetitiva en servicios.
+- Mensajes personalizados: explica al usuario qué corregir  (ej: "El email debe ser válido").
 - Resiliencia: fallos controlados. La app no crashea ante inputs inválidos; maneja errores elegante y recuperablemente.
-- Errores específicos: Sabes exactamente qué campo falló y por qué, acelerando la solución de bugs.
+- Errores específicos: sabes exactamente qué campo falló y por qué, acelerando la solución de bugs.
 
 
 
-#  **Tipos de parametros**
+#  **Tipos de parámetros**
 
-La validación de parametros difiere si este parametro es simple o en un objeto.
+La validación de parámetros difiere si este parámetro es simple o en un objeto.
 
 ##  **Parámetros Simples(PathVariable)**
 Son valores que no están agrupados dentro de ninguna estructura.
 
 Se debe anotar la clase con @Validated para que funcione.
 
-En cada parametro que se necesita validar, se debe agregar la anotacion de validacion al lado del @PathVariable. Ejemplo: 
+En cada parámetro que se necesita validar, se debe agregar la anotación de validación al lado del @PathVariable. Ejemplo: 
 
 ...nombreMetodo(@PathVariable @Positive Integer id)..
 
-Con la anotacion @Positive le decimos que el parametro id tiene que ser positivo, no acepta 0 ni nulos.
+Con la anotación @Positive le decimos que el parámetro id tiene que ser positivo, no acepta 0 ni nulos.
 
-Y en caso que no valide el valor, se lanza una excepción tipo ConstraintViolationException (importante para atraparla en otro instancia).
+Y en caso que no valide el valor, se lanza una excepción tipo ConstraintViolationException (importante para atraparla en otra instancia).
 
 
 ##  **Parámetros Objeto(RequestBody)**
-Es una colecciones de atributos organizados jerárquicamente.
+Es una colección de atributos organizados jerárquicamente.
 
 No es necesario anotar la clase con @Validated.
 
 Es necesario agregar el @Valid al lado del @RequestBody.
 
-Y en dentro de la clase del parametro objeto, validar los distintos atributos con las anotaciones de validacion.
+Y dentro de la clase del parámetro objeto, validar los distintos atributos con las anotaciones de validación.
 
-Y en caso que no valide el valor, se lanza una MethodArgumentNotValidException (importante para atraparla en otro instancia).
+Y en caso que no valide el valor, se lanza una MethodArgumentNotValidException (importante para atraparla en otra instancia).
 
 #  **Manejos de errores**
 Se debe crear una clase que atrape y maneje los errores  y nos ayudara a estandarizar la respuesta.
@@ -80,7 +80,7 @@ Se tiene que crear un metodo que maneje cada excepcion con la anotacion:
 
 #  **Anotaciones de validación**
 
-Algunas de anotaciones de validación segun tipo de datos:
+Algunas de anotaciones de validación según tipo de datos:
 
 - String
 	* @NotBlank:	No permite null, ni cadenas vacías ("") ni solo espacios.
